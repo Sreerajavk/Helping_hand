@@ -25,7 +25,7 @@ SECRET_KEY = '9q)7o%t_r2_66*il6&(s9kpsgkvrbx^=7d2lux@5^o5)9o%0g2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.224']
 
 
 # Application definition
@@ -128,7 +128,7 @@ MEDIA_URL = '/media/'
 
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'shaheemMPM'
-EMAIL_HOST_PASSWORD = 'Shaheemp@2580'
+EMAIL_HOST_USER = 'sree123'
+EMAIL_HOST_PASSWORD = 'sreejith123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

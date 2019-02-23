@@ -82,7 +82,7 @@ def signup(request):
 
         print(first_name , last_name , username , email , mobile , password)
 
-        user = User.objects.create(username = username , first_name=first_name , last_name=last_name , email=email , password=password)
+        user = User.objects.create_user(first_name = first_name, last_name=last_name, username = username, email = email, password = password)
         user.save()
 
 
@@ -94,11 +94,13 @@ def signup(request):
             #sending email
             send_mail(request , user)
 
-            return JsonResponse({'status' : '200'})
+            return JsonResponse({'status' : '200' , 'id' : user.id})
 
         return JsonResponse({'status' : '400'})
 
 
+    if request.user.is_authenticated:
+        return render(request , 'home.html')
     return  render( request , 'signup.html')
 
 
@@ -131,3 +133,76 @@ def login_fn(request):
     else:
 
         return render(request , 'login.html')
+
+
+@csrf_exempt
+def mobile_login(requsest):
+
+
+
+    if requsest.method == 'POST':
+
+        username = requsest.POST.get('username')
+        password = requsest.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:
+            user_obj = User.objects.get(username=username)
+            donor_obj = donor_details.objects.get(user=user_obj.id)
+            print(donor_obj)
+            print(donor_obj.email_status)
+
+            if donor_obj.email_status:
+                response = {}
+                response['first_name']  = user_obj.first_name
+                response['last_name']  = user_obj.last_name
+                response['username'] = user_obj.username
+                response['mobile'] = donor_obj.phone
+                response['email'] = user_obj.email
+                response['status'] = 200
+                response['id'] = user_obj.id
+
+                return JsonResponse(response)
+            else:
+
+                return JsonResponse({'status': 300})
+        else:
+            return JsonResponse({'status': 400})
+
+
+
+
+@csrf_exempt
+def mobile_signup(request):
+
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        password = str(request.POST.get('password'))
+
+        print(first_name, last_name, username, email, mobile, password)
+
+        try:
+
+            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email,
+                                       password=password)
+            user.save()
+
+            if user:
+                #success
+                donor_obj = donor_details(user = user , email_status=False , phone=mobile , points=0)
+                donor_obj.save()
+
+                #sending email
+                print('sending email')
+                send_mail(request , user)
+                print('mail send')
+                return JsonResponse({'status' : '200'})
+        except:
+            return JsonResponse({'text': 'alredy registerd'})
+
+        return JsonResponse({'status' : '400'})
+

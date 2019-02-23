@@ -29,5 +29,7 @@ urlpatterns = [
     path('login/', views.login_fn) ,
 
 
-    path('signup/' , views.signup , name = 'signup')
+    path('signup/' , views.signup , name = 'signup') ,
+    path('mobile_login/' , views.mobile_login) ,
+    path('mobile_signup/' , views.mobile_signup) ,
 ]
