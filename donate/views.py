@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
@@ -40,7 +40,7 @@ def send_mail(request , user):
     message = render_to_string('acc_active_email.html', {
         'user': user,
         'domain': current_site.domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
         'token': account_activation_token.make_token(user),
     })
     to_email = user.email
@@ -59,9 +59,12 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        donor_obj = donor_details.objects.get(user=user)
+        donor_obj.email_status = True
+        donor_obj.save()
+        #login(request, user)
+        return redirect('login/')
+        #return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -91,7 +94,40 @@ def signup(request):
             #sending email
             send_mail(request , user)
 
-            return HttpResponse("email send")
+            return JsonResponse({'status' : '200'})
+
+        return JsonResponse({'status' : '400'})
 
 
     return  render( request , 'signup.html')
+
+
+@csrf_exempt
+def login_fn(request):
+
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username = username , password=password)
+        if user:
+            user_obj = User.objects.get(username = username)
+            donor_obj = donor_details.objects.get(user = user_obj.id )
+
+            print(donor_obj.email_status)
+
+            if donor_obj.email_status:
+                return JsonResponse({'status' : '200'})
+            else:
+
+                return JsonResponse({'status' : '300'})
+        else:
+            return JsonResponse({'status': '400'})
+
+
+        print(username , password)
+
+    else:
+
+        return render(request , 'login.html')

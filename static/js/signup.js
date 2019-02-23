@@ -77,7 +77,7 @@ $('#signup_form').on('submit',function(event){
 
 
     var last_name = $('#last_name').val();
-    alert(last_name);
+    // alert(last_name);
     var mobile = $('#mobile').val();
     var email = $('#email').val();
     var first_name = $('#first_name').val();
@@ -86,8 +86,12 @@ $('#signup_form').on('submit',function(event){
     var re_password = $('#repeat-pass').val();
 
 
+    if (password !=re_password){
+        alert("paaword does not match")
+    }
 
-    $.post('/signup/',{
+    else{
+        $.post('/signup/',{
 
         username:username,
         password:password,
@@ -130,4 +134,77 @@ $('#signup_form').on('submit',function(event){
         $('#loader_img1').css('opacity' , '0');
 
     });
+    }
+
+
+
+
+});
+
+
+$('#login_form').on('submit',function(event){
+
+
+    //alert("sdfsdf");
+
+    event.preventDefault();
+    //loader begin spigging
+    $('#loader_img1').css('opacity' , '1');
+    //$('#warning_txt').css('opacity' , '0');
+
+
+    var username = $('#username').val();
+    var password = $('#pass').val();
+
+
+
+
+        $.post('/login/',{
+
+        username:username,
+        password:password,
+
+
+
+    })
+    .done(function(response){
+        // request successfull
+        $('#loader_img1').css('opacity' , '0');
+        if ( response.status == '200'){
+            // redirect to home page
+            //print('sdfjhsfi')
+            window.location = "/home";
+        }
+
+        else if( response.status == '400'){
+            alert("Incorrect Password");
+            $('#loader_img1').css('opacity' , '0');
+        // show_warning(response.text);
+        }
+
+        else if( response.status == '300'){
+            alert("verify your email");
+            $('#loader_img1').css('opacity' , '0');
+        // show_warning(response.text);
+        }
+
+        else{
+            alert("Already completed exam");
+        }
+
+
+
+
+    })
+    .fail(function(response){
+        // request failed
+        $('#loader_img').css('opacity' , '0');
+        // show_warning('Something went wrong')
+        $('#loader_img1').css('opacity' , '0');
+
+    });
+
+
+
+
 });
