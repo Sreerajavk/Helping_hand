@@ -27,9 +27,14 @@ urlpatterns = [
         views.activate, name='activate'),
 
     path('login/', views.login_fn) ,
+    path('signup_inst/' , views.signup_inst) ,
 
 
     path('signup/' , views.signup , name = 'signup') ,
     path('mobile_login/' , views.mobile_login) ,
     path('mobile_signup/' , views.mobile_signup) ,
+    path('add_post/' , views.add_post , name = 'add_post') ,
+
+    path('view_post/' , views.view_post , name = 'view_post') ,
+    path('email_status/' , views.email_status )
 ]

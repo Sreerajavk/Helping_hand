@@ -13,6 +13,7 @@ class donor_details(models.Model):
 
 
 
+
 class institution_details(models.Model ):
 
     user =  models.OneToOneField(to = User , on_delete=models.CASCADE , null=True)
@@ -24,10 +25,12 @@ class institution_details(models.Model ):
     ifsc = models.TextField(max_length=20)
 
 
+
 class post(models.Model ):
 
     user = models.TextField(max_length=100 , null=True )
     title = models.TextField(max_length=1000)
     body = models.TextField(max_length=2000)
     is_satisfied = models.BooleanField(default=False )
+    rating = models.IntegerField(default=0)
 

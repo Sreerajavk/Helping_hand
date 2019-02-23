@@ -103,6 +103,47 @@ def signup(request):
         return render(request , 'home.html')
     return  render( request , 'signup.html')
 
+@csrf_exempt
+def signup_inst(request):
+
+    if request.method == 'POST':
+
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        password = request.POST.get('password')
+        account_name = request.POST.get('account_name')
+        account_number = request.POST.get('account_number')
+        ifsc = request.POST.get('ifsc')
+
+        print(first_name , last_name , username , email , mobile , password)
+
+        user = User.objects.create_user(first_name = first_name, last_name=last_name, username = username, email = email, password = password)
+        user.save()
+
+
+        if user:
+            #success
+            inst_obj = institution_details(user = user , email_status=False , phone=mobile ,account_holder=account_name , account_number = account_number , ifsc=ifsc)
+            inst_obj.save()
+
+            #sending email
+            send_mail(request , user)
+
+            return JsonResponse({'status' : '200' , 'id' : user.id})
+
+        return JsonResponse({'status' : '400'})
+
+
+    if request.user.is_authenticated:
+        return render(request , 'home.html')
+    return  render( request , 'signup-instit.html')
+
+
+
+
 
 @csrf_exempt
 def login_fn(request):
@@ -159,13 +200,23 @@ def mobile_login(requsest):
                 response['username'] = user_obj.username
                 response['mobile'] = donor_obj.phone
                 response['email'] = user_obj.email
-                response['status'] = 200
+
                 response['id'] = user_obj.id
+                response['status'] = 200
+
+                print(response)
 
                 return JsonResponse(response)
             else:
-
-                return JsonResponse({'status': 300})
+                response = {}
+                response['first_name'] = user_obj.first_name
+                response['last_name'] = user_obj.last_name
+                response['username'] = user_obj.username
+                response['mobile'] = donor_obj.phone
+                response['email'] = user_obj.email
+                response['status'] = 300
+                response['id'] = user_obj.id
+                return JsonResponse(response)
         else:
             return JsonResponse({'status': 400})
 
@@ -200,9 +251,76 @@ def mobile_signup(request):
                 print('sending email')
                 send_mail(request , user)
                 print('mail send')
-                return JsonResponse({'status' : '200'})
+                print({'status' : '200'})
+                return JsonResponse({'status' : 200})
         except:
-            return JsonResponse({'text': 'alredy registerd'})
+            return JsonResponse({'text': 'alredy registerd' , 'status' : 500})
 
-        return JsonResponse({'status' : '400'})
+        return JsonResponse({'status' : 400})
 
+
+@csrf_exempt
+def add_post(request):
+
+    if request.method == 'POST':
+
+
+        if request.user.is_authenticated:
+            title = request.POST.get('title')
+            body = request.POST.get('body')
+
+            post_obj = post.objects.create(user = request.user.username , title = title , body=body , is_satisfied=False , rating=0)
+            post_obj.save()
+
+        else:
+            return redirect('/login')
+
+    else:
+
+        return  render(request , 'issue.html')
+
+
+@csrf_exempt
+def view_post(request):
+
+    if request.method == 'POST':
+
+        post_obj = post.objects.all()
+        all_post=[]
+
+        for i in post_obj:
+
+            dic ={}
+            dic['id'] = i.id
+            dic['title'] = i.title
+            dic['body'] = i.body
+            dic['user'] = i.user
+            dic['is_satisfied'] = i.is_satisfied
+            dic['rating'] = i.rating
+
+            all_post.append(dic)
+
+        return JsonResponse({'data' : all_post})
+
+
+
+
+    return render(request , 'forum.html')
+
+
+@csrf_exempt
+def email_status(request):
+
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        print(username)
+        user_obj = User.objects.get(username = username)
+        donor_obj = donor_details.objects.get(user = user_obj.id)
+
+        if donor_obj.email_status:
+            return JsonResponse({'status' : 200})
+
+        else:
+
+            return JsonResponse({'status': 400})
