@@ -128,7 +128,7 @@ MEDIA_URL = '/media/'
 
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'sreerajavk123'
-EMAIL_HOST_PASSWORD = 'harrypotter123'
+EMAIL_HOST_USER = 'shaheemMPM'
+EMAIL_HOST_PASSWORD = 'Shaheemp@2580'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
