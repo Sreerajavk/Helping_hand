@@ -6,6 +6,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
+from .models import *
 from .token import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
@@ -22,13 +24,16 @@ def index(request):
 #home page view
 def home(request):
 
+
+
+
     return render(request , 'home.html')
 
 
 
 
 
-def send_mail(request):
+def send_mail(request , user):
 
     current_site = get_current_site(request)
     mail_subject = 'Activate your blog account.'
@@ -38,7 +43,7 @@ def send_mail(request):
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
     })
-    to_email = form.cleaned_data.get('email')
+    to_email = user.email
     email = EmailMessage(
         mail_subject, message, to=[to_email]
     )
@@ -60,7 +65,33 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Activation link is invalid!')
 
-
+@csrf_exempt
 def signup(request):
 
-    return  render('signup.html')
+    if request.method == 'POST':
+
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        password = request.POST.get('password')
+
+        print(first_name , last_name , username , email , mobile , password)
+
+        user = User.objects.create(username = username , first_name=first_name , last_name=last_name , email=email , password=password)
+        user.save()
+
+
+        if user:
+            #success
+            donor_obj = donor_details(user = user , email_status=False , phone=mobile , points=0)
+            donor_obj.save()
+
+            #sending email
+            send_mail(request , user)
+
+            return HttpResponse("email send")
+
+
+    return  render( request , 'signup.html')
