@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 
    <!--- basic page needs
@@ -31,6 +32,82 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 
+  <style media="screen">
+      .issues-container{
+        padding-top: 100px;
+        padding-bottom: 200px;
+      }
+      .container-div{
+        border: 1px solid rgb(186, 186, 186);
+        padding: 25px;
+        margin-bottom: 15px;
+        border-radius: 20px;
+      }
+      .leader-board{
+        background: rgb(231, 234, 237);
+        display: block;
+        width: 100%;
+        margin-top: 100px;
+        padding: 20px;
+        margin-left: 30px;
+        border-radius: 20px;
+      }
+      .leaders{
+        margin-top: 20px;
+        line-height: 2;
+      }
+      .streak{
+        background: #f4b642;
+        margin-left: 20px;
+        border-radius: 20px;
+        padding: 5px 10px 5px 10px;
+        font-size: 14px;
+        color: white;
+      }
+      .col-8{
+        width: 50vw;
+        display: inline-block;
+        float: left;
+      }
+      .col-4{
+        width: 30vw;
+        display: inline-block;
+        float: right;
+      }
+      .gradient-button {
+        margin: 10px;
+        font-family: "Arial Black", Gadget, sans-serif;
+        font-size: 20px;
+        padding: 15px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: #FFF;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        width: 200px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        cursor: pointer;
+        display: inline-block;
+        border-radius: 25px;
+    }
+    .gradient-button:hover{
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin: 8px 10px 12px;
+    }
+    .gradient-button-1 {background-image: linear-gradient(to right, #DD5E89 0%, #F7BB97 51%, #DD5E89 100%)}
+    .gradient-button-1:hover { background-position: right center; }
+    .bttn{
+      text-align: center;
+      /* margin-top: -50px; */
+    }
+    #portfolio{
+      padding-bottom: -40px;
+    }
+  </style>
+
 </head>
 
 <body id="top">
@@ -58,7 +135,7 @@
 				<li class="current"><a class="smoothscroll" href="#home" title="">Home</a></li>
 				<li><a class="smoothscroll" href="#about" title="">About</a></li>
 				<li><a class="smoothscroll" href="#services" title="">Signup</a></li>
-				<li><a class="smoothscroll" href="#portfolio" title="">Works</a></li>
+				<li><a class="smoothscroll" href="#portfolio" title="">Issues</a></li>
 				<li><a class="smoothscroll" href="#contact" title="">Contact</a></li>
 			</ul>
 
@@ -224,158 +301,64 @@
    ================================================== -->
    <section id="portfolio">
 
-   	<div class="intro-wrap">
+     <div class="container">
+       <div class="row">
+         <div class="col-8">
+           <div class="issues-container">
+             <!-- single issue div -->
+             <div class="container-div">
+               <div  style="font-size: 20px;">
+                 <span>Hello</span>
+               </div>
+               <div>
+                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+               </div>
+               <div>
+                 <a class="btn btn-primary" href="#">
+                   View Institution
+                 </a>
+               </div>
+             </div>
+             <!-- //single issue div -->
 
-   		<div class="row narrow section-intro with-bottom-sep animate-this">
-	   		<div class="col-twelve">
-	   			<h3>Showcase</h3>
-		   		<h1>What We've Done in Past.</h1>
-
-		   		<p class="lead">Lorem ipsum Dolor adipisicing nostrud et aute Excepteur amet commodo ea dolore irure esse Duis nulla sint fugiat cillum ullamco proident aliquip quis qui voluptate dolore veniam Ut laborum non est in officia.</p>
-	   		</div>
-	   	</div> <!-- end row section-intro -->
-
-   	</div> <!-- end intro-wrap -->
-
-   	<div class="row portfolio-content">
-   		<div class="col-twelve">
-   			<div id="folio-wrap" class="bricks-wrapper">
-
-   				<div class="brick folio-item">
-	               <div class="item-wrap animate-this" data-src="../static/images/landing/portfolio/gallery/g-shutterbug.jpg" data-sub-html="#01" >
-	                  <a href="#" class="overlay">
-	                  	<img src="../static/images/landing/portfolio/shutterbug.jpg" alt="Skaterboy">
-	                     <div class="item-text">
-	                     	<span class="folio-types">
-		     					      Web Development
-		     					   </span>
-		     					   <h3 class="folio-title">Shutterbug</h3>
-		     					</div>
-	                  </a>
-	                  <a href="https://www.behance.net/" class='details-link' title="details">
-	                  	<i class="icon-link"></i>
-	                  </a>
-	               </div> <!-- end item-wrap -->
-
-						<div id="01" class='hide'>
-							<h4>Shutterbug</h4>
-							<p>Lorem ipsum Dolor deserunt labore sint officia. Magna et aute enim proident tempor sunt quis nulla voluptate fugiat velit. <a href="https://www.behance.net/">Details</a></p>
-						</div>
-	        		</div> <!-- end folio-item -->
-
-	        		<div class="brick folio-item">
-	               <div class="item-wrap animate-this" data-src="../static/images/landing/portfolio/gallery/g-yellowwall.jpg" data-sub-html="#02">
-	                  <a href="#" class="overlay">
-	                  	<img src="../static/images/landing/portfolio/yellowwall.jpg" alt="Shutterbug">
-	                     <div class="item-text">
-	                     	<span class="folio-types">
-		     					      Marketing
-		     					   </span>
-		     					   <h3 class="folio-title">Yellow Wall</h3>
-		     					</div>
-	                  </a>
-	                  <a href="https://www.behance.net/" class='details-link' title="details">
-	                  	<i class="icon-link"></i>
-	                  </a>
-	               </div> <!-- end item-wrap -->
-
-	               <div id="02" class='hide'>
-							<h4>Yellow Wall</h4>
-							<p>Lorem ipsum Dolor deserunt labore sint officia. Magna et aute enim proident tempor sunt quis nulla voluptate fugiat velit. <a href="https://www.behance.net/">Details</a></p>
-						</div>
-	        		</div> <!-- end folio-item -->
-
-	        		<div class="brick folio-item">
-	               <div class="item-wrap animate-this" data-src="../static/images/landing/portfolio/gallery/g-architecture.jpg" data-sub-html="#03" >
-	                  <a href="#" class="overlay">
-	                  	<img src="../static/images/landing/portfolio/architecture.jpg" alt="Explore">
-	                     <div class="item-text">
-		     					   <span class="folio-types">
-		     					      Web Design
-		     					   </span>
-		     					   <h3 class="folio-title">Architecture</h3>
-		     					</div>
-	                  </a>
-	                  <a href="https://www.behance.net/" class='details-link' title="details">
-	                  	<i class="icon-link"></i>
-	                  </a>
-	               </div> <!-- end item-wrap -->
-
-	               <div id="03" class='hide'>
-							<h4>Architecture</h4>
-							<p>Lorem ipsum Dolor deserunt labore sint officia. Magna et aute enim proident tempor sunt quis nulla voluptate fugiat velit. <a href="https://www.behance.net/">Details</a></p>
-						</div>
-	        		</div> <!-- end folio-item -->
-
-					<div class="brick folio-item">
-	               <div class="item-wrap animate-this"  data-src="../static/images/landing/portfolio/gallery/g-minimalismo.jpg"  data-sub-html="#04" >
-	                  <a href="#" class="overlay">
-	                  	<img src="../static/images/landing/portfolio/minimalismo.jpg" alt="Minimalismo">
-	                     <div class="item-text">
-		     					   <span class="folio-types">
-		     					      Web Design
-		     					   </span>
-		     					   <h3 class="folio-title">Minimalismo</h3>
-		     					</div>
-	                  </a>
-	                  <a href="https://www.behance.net/" class='details-link' title="details">
-	                  	<i class="icon-link"></i>
-	                  </a>
-	               </div> <!-- end item-wrap -->
-
-	               <div id="04" class='hide'>
-							<h4>Minimalismo</h4>
-							<p>Lorem ipsum Dolor deserunt labore sint officia. Magna et aute enim proident tempor sunt quis nulla voluptate fugiat velit. <a href="https://www.behance.net/">Details</a></p>
-						</div>
-	        		</div> <!-- end folio-item -->
-
-					<div class="brick folio-item">
-	               <div class="item-wrap animate-this"  data-src="../static/images/landing/portfolio/gallery/g-skaterboy.jpg"  data-sub-html="#05" >
-	                  <a href="#" class="overlay">
-	                  	<img src="../static/images/landing/portfolio/skaterboy.jpg" alt="Bicycle">
-	                     <div class="item-text">
-		     					   <span class="folio-types">
-		     					      Branding
-		     					   </span>
-		     					   <h3 class="folio-title">Skaterboy</h3>
-		     					</div>
-	                  </a>
-	                  <a href="https://www.behance.net/" class='details-link' title="details">
-	                  	<i class="icon-link"></i>
-	                  </a>
-	               </div> <!-- end item-wrap -->
-
-	               <div id="05" class='hide'>
-							<h4>Skaterboy</h4>
-							<p>Lorem ipsum Dolor deserunt labore sint officia. Magna et aute enim proident tempor sunt quis nulla voluptate fugiat velit. <a href="https://www.behance.net/">Details</a></p>
-						</div>
-	        		</div> <!-- end folio-item -->
-
-					<div class="brick folio-item">
-	               <div class="item-wrap animate-this"  data-src="../static/images/landing/portfolio/gallery/g-salad.jpg"  data-sub-html="#06">
-	                  <a href="#" class="overlay">
-	                  	<img src="../static/images/landing/portfolio/salad.jpg" alt="Salad">
-	                     <div class="item-text">
-		     					   <span class="folio-types">
-		     					      Branding
-		     					   </span>
-		     					   <h3 class="folio-title">Salad</h3>
-		     					</div>
-	                  </a>
-	                  <a href="https://www.behance.net/" class='details-link' title="details">
-	                  	<i class="icon-link"></i>
-	                  </a>
-	               </div> <!-- end item-wrap -->
-
-	               <div id="06" class='hide'>
-							<h4>Salad</h4>
-							<p>Lorem ipsum Dolor deserunt labore sint officia. Magna et aute enim proident tempor sunt quis nulla voluptate fugiat velit. <a href="www.behance.net">Details</a></p>
-						</div>
-	        		</div> <!-- end folio-item -->
-
-   			</div> <!-- end folio-wrap -->
-   		</div> <!-- end twelve -->
-   	</div> <!-- end portfolio-content -->
+             <!-- single issue div -->
+             <div class="container-div">
+               <div  style="font-size: 20px;">
+                 <span>Hello</span>
+               </div>
+               <div>
+                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+               </div>
+               <div>
+                 <a class="btn btn-primary" href="#">
+                   View Institution
+                 </a>
+               </div>
+             </div>
+             <!-- //single issue div -->
+            <h1 class="bttn"><a class="gradient-button gradient-button-1" href="forum.html">View More</a></h1>
+           </div>
+         </div>
+         <div class="col-4">
+           <div class="container leader-board">
+             <div style="font-size: 20px;">
+               <span>Top Donors</span>
+             </div>
+             <div class="leaders">
+               <div class="person">
+                 Steve Jobs <span class="streak">28 🌶️</span>
+               </div>
+               <div class="person">
+                 Tim cook <span class="streak">28 🌶️</span>
+               </div>
+               <div class="person">
+                 Bil Gates <span class="streak">28 🌶️</span>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
 
    </section>  <!-- end portfolio -->
 
