@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
 from donate import views
 
@@ -22,4 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , views.index) ,
     path('home/' , views.home ) ,
+    re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
+
+
+    path('signup/' , views.signup , name = 'signup')
 ]
