@@ -142,6 +142,91 @@ $('#signup_form').on('submit',function(event){
 });
 
 
+
+$('#signup_inst_form').on('submit',function(event){
+
+
+    //alert("sdfsdf");
+
+    event.preventDefault();
+    //loader begin spigging
+    $('#loader_img1').css('opacity' , '1');
+    //$('#warning_txt').css('opacity' , '0');
+
+
+    var last_name = $('#last_name').val();
+    // alert(last_name);
+    var mobile = $('#mobile').val();
+    var email = $('#email').val();
+    var first_name = $('#first_name').val();
+    var username = $('#username').val();
+    var password = $('#pass').val();
+    var re_password = $('#repeat-pass').val();
+    var account_name = $('#account_name').val();
+    var account_number = $('#account_number').val();
+    var ifsc = $('#ifsc').val();
+
+
+
+    if (password !=re_password){
+        alert("paaword does not match")
+    }
+
+    else{
+        $.post('/signup_inst/',{
+
+        username:username,
+        password:password,
+        first_name : first_name ,
+        last_name : last_name ,
+        username : username ,
+        first_name : first_name ,
+        email : email ,
+        mobile : mobile,
+        account_name : account_name  ,
+        account_number : account_number ,
+        ifsc: ifsc
+
+
+    })
+    .done(function(response){
+        // request successfull
+        $('#loader_img1').css('opacity' , '0');
+        if ( response.status == '200'){
+            // redirect to home page
+            //print('sdfjhsfi')
+            window.location = "/home";
+        }
+
+        else if( response.status == '400'){
+            alert("Incorrect Password");
+            $('#loader_img1').css('opacity' , '0');
+        // show_warning(response.text);
+        }
+
+        else{
+            alert("Already completed exam");
+        }
+
+
+
+
+    })
+    .fail(function(response){
+        // request failed
+        $('#loader_img').css('opacity' , '0');
+        // show_warning('Something went wrong')
+        $('#loader_img1').css('opacity' , '0');
+
+    });
+    }
+
+
+
+
+});
+
+
 $('#login_form').on('submit',function(event){
 
 
@@ -163,6 +248,78 @@ $('#login_form').on('submit',function(event){
 
         username:username,
         password:password,
+
+
+
+    })
+    .done(function(response){
+        // request successfull
+        $('#loader_img1').css('opacity' , '0');
+        if ( response.status == '200'){
+            // redirect to home page
+            //print('sdfjhsfi')
+            window.location = "/home";
+        }
+
+        else if( response.status == '400'){
+            alert("Incorrect Password");
+            $('#loader_img1').css('opacity' , '0');
+        // show_warning(response.text);
+        }
+
+        else if( response.status == '300'){
+            alert("verify your email");
+            $('#loader_img1').css('opacity' , '0');
+        // show_warning(response.text);
+        }
+
+        else{
+            alert("Already completed exam");
+        }
+
+
+
+
+    })
+    .fail(function(response){
+        // request failed
+        $('#loader_img').css('opacity' , '0');
+        // show_warning('Something went wrong')
+        $('#loader_img1').css('opacity' , '0');
+
+    });
+
+
+
+
+});
+
+
+
+
+$('#issue_form').on('submit',function(event){
+
+
+    // alert("sdfsdf");
+
+    event.preventDefault();
+    //loader begin spigging
+    $('#loader_img1').css('opacity' , '1');
+    //$('#warning_txt').css('opacity' , '0');
+
+
+    var title = $('#title').val();
+    var body = $('#body').val();
+
+    // alert(title);
+
+
+
+
+        $.post('/add_post/',{
+
+        title:title,
+        body:body,
 
 
 

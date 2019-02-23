@@ -9,7 +9,7 @@ from .models import  *
 @admin.register(donor_details)
 class Admin_donor(admin.ModelAdmin):
 
-    list_display = ['user' , 'email_status' , 'phone' , 'points']
+    list_display = ['user' , 'email_status' , 'phone' , 'points' ,'points']
 
 
 
@@ -22,6 +22,6 @@ class Admin_institution(admin.ModelAdmin):
 @admin.register(post)
 class Admin_post(admin.ModelAdmin):
 
-    list_display = ['user' , 'title' , 'body' , 'is_satisfied' ]
+    list_display = ['user' , 'title' , 'body' , 'is_satisfied' ,'rating' ]
 
 

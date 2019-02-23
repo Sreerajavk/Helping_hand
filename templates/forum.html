@@ -38,9 +38,156 @@
           font-size: 14px;
           color: white;
         }
+                  #username_spin{
+              float: right;
+              color: #00f;
+              margin-top: -35px;
+              margin-right: 15px;
+        }
+                .loader {
+              position: relative;
+              margin: 0 auto;
+              width: 100px;
+            }
+            .loader:before {
+              content: "";
+              display: block;
+              padding-top: 100%;
+            }
+            .circular {
+              -webkit-animation: rotate 2s linear infinite;
+                      animation: rotate 2s linear infinite;
+              height: 100%;
+              -webkit-transform-origin: center center;
+                      transform-origin: center center;
+              width: 100%;
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: auto;
+            }
+            .path {
+              stroke-dasharray: 1, 200;
+              stroke-dashoffset: 0;
+              -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+                      animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+              stroke-linecap: round;
+            }
+            @-webkit-keyframes rotate {
+              100% {
+                -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+              }
+            }
+            @keyframes rotate {
+              100% {
+                -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+              }
+            }
+            @-webkit-keyframes dash {
+              0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+              }
+              50% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -35px;
+              }
+              100% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -124px;
+              }
+            }
+            @keyframes dash {
+              0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+              }
+              50% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -35px;
+              }
+              100% {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -124px;
+              }
+            }
+            @-webkit-keyframes color {
+              100%,
+              0% {
+                stroke: #d62d20;
+              }
+              40% {
+                stroke: #0057e7;
+              }
+              66% {
+                stroke: #008744;
+              }
+              80%,
+              90% {
+                stroke: #ffa700;
+              }
+            }
+            @keyframes color {
+              100%,
+              0% {
+                stroke: #d62d20;
+              }
+              40% {
+                stroke: #0057e7;
+              }
+              66% {
+                stroke: #008744;
+              }
+              80%,
+              90% {
+                stroke: #ffa700;
+              }
+            }
+            body {
+              background-color: #eee;
+            }
+            .showbox {
+              position: relative;
+              top: 300px;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 5%;
+            }
+    #clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+       position: fixed;
+        top:300px;
+}
+#clockdiv > div{
+	padding: 10px;
+	border-radius: 3px;
+	background: #00BF96;
+	display: inline-block;
+}
+#clockdiv div > span{
+	padding: 15px;
+	border-radius: 3px;
+	background: #00816A;
+	display: inline-block;
+}
+.smalltext{
+	padding-top: 5px;
+	font-size: 16px;
+}
     </style>
   </head>
   <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,70 +210,33 @@
     <div class="container">
       <div class="row">
         <div class="col-8">
-          <div class="issues-container">
-            <!-- single issue div -->
-            <div class="container-div">
-              <div  style="font-size: 20px;">
-                <span>Hello</span>
-              </div>
-              <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              <div>
-                <a class="btn btn-primary" href="#">
-                  Read More
-                </a>
-              </div>
-            </div>
-            <!-- //single issue div -->
+            <div class="showbox" id="google_loader">
+                  <div class="loader">
+                    <svg class="circular" viewBox="25 25 50 50">
+                      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                    </svg>
+                  </div>
+</div>
+          <div class="issues-container" id="main_div">
 
-            <!-- single issue div -->
-            <div class="container-div">
-              <div  style="font-size: 20px;">
-                <span>Hello</span>
-              </div>
-              <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              <div>
-                <a class="btn btn-primary" href="#">
-                  Read More
-                </a>
-              </div>
-            </div>
-            <!-- //single issue div -->
 
-            <!-- single issue div -->
-            <div class="container-div">
-              <div  style="font-size: 20px;">
-                <span>Hello</span>
-              </div>
-              <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              <div>
-                <a class="btn btn-primary" href="#">
-                  Read More
-                </a>
-              </div>
-            </div>
-            <!-- //single issue div -->
+{#            <!-- single issue div -->#}
+{#            <div class="container-div">#}
+{#              <div  style="font-size: 20px;">#}
+{#                <span>Hello</span>#}
+{#              </div>#}
+{#              <div>#}
+{#                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>#}
+{#              </div>#}
+{#              <div>#}
+{#                <a class="btn btn-primary" href="#">#}
+{#                  Read More#}
+{#                </a>#}
+{#              </div>#}
+{#            </div>#}
+{#            <!-- //single issue div -->#}
 
-            <!-- single issue div -->
-            <div class="container-div">
-              <div  style="font-size: 20px;">
-                <span>Hello</span>
-              </div>
-              <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              <div>
-                <a class="btn btn-primary" href="#">
-                  Read More
-                </a>
-              </div>
-            </div>
-            <!-- //single issue div -->
+
           </div>
         </div>
         <div class="col-4">
@@ -149,5 +259,25 @@
         </div>
       </div>
     </div>
+
+
+
+<!--===============================================================================================-->
+	<script src="../static/login-vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/login-vendor/bootstrap/js/popper.js"></script>
+	<script src="../static/login-vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/login-vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/login-vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+    <script src="../static/js/view_post.js"></script>
   </body>
 </html>
